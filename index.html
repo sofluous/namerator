@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sketch Name & Code Generator</title>
+    <style>
+        :root {
+            --bg: #0b0d11;
+            --panel: #141820;
+            --sub: #0f1218;
+            --text: #e7ecf1;
+            --muted: #a5b0bd;
+            --accent: #7dd3fc;
+            --accent-2: #a78bfa;
+            --ok: #34d399;
+            --warn: #f59e0b;
+            --danger: #ef4444;
+            --shadow: 0 20px 35px rgba(0, 0, 0, .35);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --gap: 16px;
+            --gap-sm: 10px;
+            --mono: "ui-monospace", "SFMono-Regular", Consolas, Monaco, Menlo, monospace;
+            --sans: Inter, Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, var(--bg), #0a0c10 50%, #080a0e);
+            color: var(--text);
+            font: 15px/1.45 var(--sans);
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px
+        }
+
+        header {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: radial-gradient(120% 120% at 20% 10%, var(--accent), transparent 60%), radial-gradient(120% 120% at 80% 90%, var(--accent-2), transparent 55%), linear-gradient(135deg, #10131a, #0c0f15);
+            box-shadow: var(--shadow)
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0
+        }
+
+        .sub {
+            color: var(--muted)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 20px
+        }
+
+        @media (max-width:980px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, #121722, #0f141e);
+            border: 1px solid #1b2331;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow)
+        }
+
+        .card .hd {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            border-bottom: 1px solid #1b2331
+        }
+
+        .card .bd {
+            padding: 18px
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px
+        }
+
+        .row-3 {
+            grid-template-columns: repeat(3, 1fr)
+        }
+
+        .row-2 {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .row-1 {
+            grid-template-columns: 1fr
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        label {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #242d3d;
+            background: #0f141e;
+            color: var(--text);
+            outline: none
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(45, 120, 214, .2)
+        }
+
+        .btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            appearance: none;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 14px;
+            background: #1a2232;
+            color: #e9eef5;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: .2px
+        }
+
+        .btn:hover {
+            background: #243049
+        }
+
+        .btn.primary {
+            background: linear-gradient(180deg, #2a8bd8, #2a6fd8);
+            box-shadow: 0 8px 18px rgba(42, 139, 216, .35)
+        }
+
+        .btn.primary:hover {
+            filter: brightness(1.03)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid #2a3650
+        }
+
+        .cap {
+            font: 12px var(--mono);
+            color: var(--muted)
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px
+        }
+
+        @media (max-width:820px) {
+            .results {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .result {
+            border: 1px solid #1b2331;
+            border-radius: 14px;
+            padding: 14px;
+            background: linear-gradient(180deg, #0f141e, #0d121b)
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: .3px;
+            margin: 0 0 6px
+        }
+
+        .codes {
+            display: grid;
+            gap: 8px
+        }
+
+        .code-line {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center
+        }
+
+        .kbd {
+            font: 13px var(--mono);
+            background: #0a0f17;
+            border: 1px solid #1b2331;
+            border-radius: 8px;
+            padding: 8px 10px;
+            overflow: auto;
+            white-space: nowrap
+        }
+
+        .pill {
+            font: 11px var(--mono);
+            background: #112035;
+            border: 1px solid #1f3858;
+            border-radius: 999px;
+            padding: 6px 10px;
+            color: #cfe7ff;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed #1b2331
+        }
+
+        .tagrow {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .footer {
+            margin: 28px 0 40px;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center
+        }
+
+        .switch {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .switch input {
+            appearance: none;
+            width: 40px;
+            height: 24px;
+            border-radius: 20px;
+            background: #233047;
+            position: relative;
+            outline: none;
+            cursor: pointer
+        }
+
+        .switch input:checked {
+            background: #2563eb
+        }
+
+        .switch input:before {
+            content: "";
+            position: absolute;
+            inset: 3px auto auto 3px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .2s
+        }
+
+        .switch input:checked:before {
+            left: 19px
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true"></div>
+                <div>
+                    <h1>Sketch Name & Code Generator</h1>
+                    <div class="sub">One-click working titles + consistent IDs for sketches (single-word, poetic,
+                        expandable).
+                    </div>
+                </div>
+            </div>
+            <div class="switch" title="Live date">
+                <span class="muted">Lock to today</span>
+                <input id="dateLock" type="checkbox" checked />
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- Controls -->
+            <section class="card" aria-labelledby="controls-h">
+                <div class="hd">
+                    <strong id="controls-h">Controls</strong>
+                    <div class="btns">
+                        <button class="btn ghost" id="btnReset">Reset</button>
+                        <button class="btn primary" id="btnGenerate">Generate</button>
+                    </div>
+                </div>
+                <div class="bd">
+                    <div class="row row-4" style="margin-bottom:12px">
+                        <div class="field">
+                            <label for="selType">Type</label>
+                            <select id="selType"></select>
+                        </div>
+                        <div class="field">
+                            <label for="selInput">Input</label>
+                            <select id="selInput"></select>
+                        </div>
+                        <div class="field">
+                            <label for="selPlatform">Platform</label>
+                            <select id="selPlatform"></select>
+                        </div>
+                        <div class="field">
+                            <label for="selSeed">Theme Seed</label>
+                            <select id="selSeed"></select>
+                        </div>
+                    </div>
+                    <div class="row row-3" style="margin-bottom:12px">
+                        <div class="field">
+                            <label for="selStyle">Name Style</label>
+                            <select id="selStyle">
+                                <option value="neutral">Neutral</option>
+                                <option value="soft">Soft</option>
+                                <option value="sharp">Sharp</option>
+                                <option value="bright">Bright</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="txtHint">Optional Hint (letters, sounds, or word)</label>
+                            <input id="txtHint" type="text" placeholder="e.g., 'echo', 'lu', 'kai'" />
+                        </div>
+                        <div class="field">
+                            <label for="rngLen">Target Length <span id="lenVal" class="muted"></span></label>
+                            <input id="rngLen" type="range" min="4" max="10" value="6" />
+                        </div>
+                    </div>
+                    <div class="row row-3">
+                        <div class="field">
+                            <label for="txtDate">Date (yymmdd)</label>
+                            <input id="txtDate" type="text" />
+                            <div class="hint">Auto-fills when "Lock to today" is on.</div>
+                        </div>
+                        <div class="field">
+                            <label for="txtIter">Iteration</label>
+                            <input id="txtIter" type="text" value="a" />
+                            <div class="hint">Use a,b,c… for same-day variations.</div>
+                        </div>
+                        <div class="field">
+                            <label for="txtPrefix">Prefix</label>
+                            <input id="txtPrefix" type="text" value="SK" />
+                            <div class="hint">Project prefix for Code ID (e.g., SK).</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results -->
+            <section class="card" aria-labelledby="results-h">
+                <div class="hd">
+                    <strong id="results-h">Results</strong>
+                    <div class="btns">
+                        <button class="btn" id="btnCopyAll">Copy all</button>
+                    </div>
+                </div>
+                <div class="bd">
+                    <div class="results" id="results"></div>
+                    <div class="section">
+                        <div class="tagrow" id="activeTags"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <p class="footer">No storage. Everything happens locally. Extend vocab in <span class="cap">CONFIG</span> below.
+        </p>
+
+        <!-- Config + App -->
+        <script>
+            // ========= CONFIG =========
+            const CONFIG = {
+                types: {
+                    VIS: "Visual", SND: "Sound", INT: "Interactive", GME: "Game",
+                    TOOL: "Tool", VIZ: "DataViz"
+                },
+                inputs: {
+                    MSE: "Mouse", KB: "Keyboard", PAD: "Gamepad", CAM: "Webcam",
+                    MIC: "Microphone", TOUCH: "Touch"
+                },
+                platforms: {
+                    WEB: "Web", P8: "Pico-8", RGH: "Retro Handheld", DESK: "Desktop", MOB: "Mobile"
+                },
+                seeds: {
+                    // High-level themes that also steer naming morphemes
+                    RIP: "Water / Ripple", WAV: "Wave / Sea", TID: "Tide",
+                    GLO: "Glow / Light", LUX: "Light / Lux", NEO: "Neon",
+                    MOS: "Moss / Nature", FRN: "Fern / Forest", BIR: "Bird / Air",
+                    CRT: "CRT / Retro", VHS: "VHS / Tape", MOP: "Mother-of-Pearl",
+                    ISO: "Isometric / Geometry", MON: "Monochrome", DUO: "Duotone",
+                    RGB: "RGB / Screens", CMY: "Print Colors", AER: "Air / Whisper",
+                    ECH: "Echo / Sound", TOP: "Topography / Contour"
+                },
+                // Thematic morphemes: gentle, suggestive, multi-lingual fragments
+                themeMorphemes: {
+                    RIP: ["ri", "riva", "rivu", "rill", "rip", "ria", "li", "lin", "lune", "na", "nai", "kai", "kaiu", "koi", "mizu", "sui", "onda", "und"],
+                    WAV: ["wa", "wav", "vai", "vae", "mar", "mare", "nami", "umi", "tyd", "tid", "tide", "brine", "bri", "swell", "ond", "onda"],
+                    TID: ["tid", "tide", "flot", "flux", "flow", "rio", "ebb", "evi", "aeo", "ae", "noe"],
+                    GLO: ["glo", "glow", "glae", "luma", "lumi", "lua", "lu", "lux", "halo", "hal", "io"],
+                    LUX: ["lux", "luz", "lumi", "ill", "illu", "lix", "lys", "luce", "luc"],
+                    NEO: ["neo", "neon", "nio", "nyo", "neo", "ne"],
+                    MOS: ["mos", "moss", "musa", "mori", "moro", "moro", "moko", "koke", "koro", "verd", "ver", "silv", "selv"],
+                    FRN: ["fern", "frn", "fir", "forn", "faun", "frond", "ver", "verde", "mori", "shin", "hay"],
+                    BIR: ["aer", "air", "eir", "ave", "avi", "ori", "oro", "tori", "kite", "sora", "alto", "alto", "avi"],
+                    CRT: ["crt", "scan", "phos", "phos", "vga", "vhs", "mono", "sync", "desync", "noiz", "nois", "glitch", "fuzz"],
+                    VHS: ["vhs", "tape", "mag", "oxide", "rew", "spool", "trak", "trak"],
+                    MOP: ["mop", "nac", "nacre", "irid", "op", "opal", "pearl", "perla", "shira", "shell", "kai"],
+                    ISO: ["iso", "axon", "axon", "grid", "iso", "tri", "tetra", "ortho", "para", "prism", "poly", "cont"],
+                    MON: ["mon", "mono", "uno", "sole", "solo", "haku", "shiro", "kuro", "noir"],
+                    DUO: ["duo", "bi", "dyo", "twi", "gem", "pair", "bin"],
+                    RGB: ["rgb", "scan", "pix", "dot", "phos", "raster", "triad"],
+                    CMY: ["cmy", "ink", "print", "cian", "mag", "yelo", "key"],
+                    AER: ["aer", "ae", "eir", "air", "sigh", "sus", "hush", "whis", "siro", "siroc"],
+                    ECH: ["eco", "echo", "eko", "ech", "sono", "sonus", "oto", "ne", "ring", "chime"],
+                    TOP: ["topo", "cont", "iso", "ridge", "val", "vale", "tor", "mass", "terra", "lin"],
+                    DEFAULT: ["ka", "ki", "ko", "lu", "la", "li", "no", "na", "ne", "ri", "ra", "re", "so", "su", "si", "va", "ve", "vi", "ae", "eo", "io", "ar", "el", "ul", "on", "um"]
+                },
+                // Style steering (phonetics & letter mood)
+                styles: {
+                    soft: { onset: ["l", "m", "n", "r", "s", "v", "w", "y"], vowel: ["a", "e", "i", "o", "u", "ae", "ia", "io", "ou"], coda: ["a", "e", "i", "o", "u", "el", "en", "ir", "un", "al"], mix: 0.6 },
+                    sharp: { onset: ["k", "t", "x", "z", "v", "cr", "sk", "tr", "pr", "dr"], vowel: ["a", "i", "o", "y"], coda: ["k", "x", "q", "z", "ct", "sk", "th"], mix: 0.3 },
+                    bright: { onset: ["l", "gl", "cl", "br", "fl"], vowel: ["a", "e", "i", "o", "u", "aur", "io", "ea"], coda: ["o", "a", "or", "el", "is"], mix: 0.7 },
+                    dark: { onset: ["n", "r", "v", "m", "d", "g", "gr", "vr"], vowel: ["u", "o", "au", "ou"], coda: ["um", "or", "os", "oth", "ar", "urn"], mix: 0.4 },
+                    neutral: { onset: ["b", "c", "d", "f", "g", "h", "k", "l", "m", "n", "p", "r", "s", "t", "v"], vowel: ["a", "e", "i", "o", "u"], coda: ["a", "e", "i", "o", "u", "n", "l", "r", "s"], mix: 0.5 }
+                }
+            };
+
+            // ========= UTIL =========
+            const byId = (id) => document.getElementById(id);
+            const todayYYMMDD = () => {
+                const d = new Date();
+                const y = String(d.getFullYear()).slice(-2);
+                const m = String(d.getMonth() + 1).padStart(2, '0');
+                const da = String(d.getDate()).padStart(2, '0');
+                return `${y}${m}${da}`;
+            };
+            const titleCase = s => s.replace(/(^|\b)([a-z])/g, (_, b, c) => b + c.toUpperCase());
+            const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+            // Weighted pick
+            const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+            // ========= NAME GEN =========
+            function genName(themeKey, styleKey, targetLen = 6, hint = "") {
+                const style = CONFIG.styles[styleKey] || CONFIG.styles.neutral;
+                const mor = (CONFIG.themeMorphemes[themeKey] || []).concat(CONFIG.themeMorphemes.DEFAULT);
+                if (hint) mor.push(hint.toLowerCase());
+
+                const onset = style.onset, vowel = style.vowel, coda = style.coda;
+                const wantLen = Math.max(4, Math.min(10, targetLen | 0));
+
+                const ONSETS_SWEET = ["pl", "pr", "tr", "cr", "cl", "gl", "gr", "fl", "fr", "dr", "br"];
+                const CODAS_SOFT = ["l", "n", "r", "m", "s", "el", "en", "or", "is", "on", "um", "a", "o", "e"];
+                const BAD = [/[^aeiou]{4,}/i, /[aeiou]{4,}/i, /q(?!u)/i, /^ng/i, /yy|jj/i];
+
+                function syl() { return pick(onset) + pick(vowel); }
+                function sweetOnset() { return Math.random() < 0.5 ? pick(ONSETS_SWEET) : pick(onset); }
+                function softCoda() { return Math.random() < 0.7 ? pick(CODAS_SOFT) : pick(coda); }
+                function acceptable(s) { return !BAD.some(rx => rx.test(s)); }
+
+                const TEMPLATES = [
+                    ["morph", "V"],       // morpheme + vowel
+                    ["morph", "VC"],      // morpheme + vowel + soft coda
+                    ["C", "V", "C", "V"],   // CVCV
+                    ["C", "VV", "C"],      // CVVC
+                    ["C", "V", "C", "C", "V"] // CVCCV (rare, but can sound strong)
+                ];
+
+                function buildBy(t) {
+                    let out = "";
+                    for (const slot of t) {
+                        if (slot === "morph") out += pick(mor);
+                        else if (slot === "C") out += sweetOnset();
+                        else if (slot === "V") out += pick(vowel);
+                        else if (slot === "VV") out += pick(vowel) + pick(vowel);
+                        else if (slot === "VC") out += pick(vowel) + softCoda();
+                    }
+                    return out;
+                }
+
+                // bias to theme-first templates
+                const template = Math.random() < (style.mix ?? 0.9) ? pick(TEMPLATES.slice(0, 2)) : pick(TEMPLATES);
+
+                let base = buildBy(template);
+
+                // cleanup
+                base = base.replace(/([aeiou])\1+/g, '$1').replace(/([^aeiou])\1+/g, '$1').replace(/q(?!u)/g, 'qu');
+
+                // length adjust
+                if (base.length > wantLen) base = base.slice(0, wantLen);
+                if (base.length < wantLen && Math.random() < 0.6) base += pick(vowel);
+                if (!acceptable(base)) {
+                    // single retry
+                    base = buildBy(template);
+                    base = base.replace(/([aeiou])\1+/g, '$1').replace(/([^aeiou])\1+/g, '$1').replace(/q(?!u)/g, 'qu');
+                }
+
+                return base.charAt(0).toUpperCase() + base.slice(1).toLowerCase();
+            }
+
+
+            // ========= CODE GEN =========
+            function makeCode(prefix, type, input, plat, seed, date, iter) {
+                const TYPE = type.toUpperCase();
+                const INPUT = input.toUpperCase();
+                const PLAT = plat.toUpperCase();
+                const SEED = seed.toUpperCase();
+                const DATE = (date || todayYYMMDD()).replace(/[^0-9]/g, '').slice(0, 6);
+                const ITER = (iter || 'a').replace(/[^a-z]/gi, '').slice(0, 3) || 'a';
+                return `${prefix}-${TYPE}-${INPUT}-${PLAT}-${SEED}-${DATE}${ITER}`;
+            }
+
+            // ========= UI INIT =========
+            function fillSelect(sel, map) {
+                sel.innerHTML = Object.entries(map).map(([k, v]) => `<option value="${k}">${v} <span class=cap>(${k})</span></option>`).join('');
+            }
+
+            function tag(label, val) { return `<span class="pill">${label}: <b>${val}</b></span>` }
+
+            function renderActiveTags() {
+                const t = byId('selType').value,
+                    i = byId('selInput').value,
+                    p = byId('selPlatform').value,
+                    s = byId('selSeed').value;
+                byId('activeTags').innerHTML = [
+                    tag('TYPE', t), tag('INPUT', i), tag('PLAT', p), tag('SEED', s)
+                ].join(' ');
+            }
+
+            function setDateField() {
+                const lock = byId('dateLock').checked;
+                if (lock) { byId('txtDate').value = todayYYMMDD(); byId('txtDate').readOnly = true; }
+                else { byId('txtDate').readOnly = false; }
+            }
+
+            function rngSync() { byId('lenVal').textContent = `(${byId('rngLen').value})`; }
+
+            function copy(text) { navigator.clipboard.writeText(text).catch(() => { }); }
+
+            function resultCard(name, slug, code) {
+                return `
+      <div class="result">
+        <div class="title">${name}</div>
+        <div class="codes">
+          <div class="code-line"><div class="kbd" title="Slug">${slug}</div><button class="btn ghost" data-copy="${slug}">Copy</button></div>
+          <div class="code-line"><div class="kbd" title="Code ID">${code}</div><button class="btn ghost" data-copy="${code}">Copy</button></div>
+        </div>
+        <div class="section muted">Use the single-word title as a working name; refine later without breaking IDs.</div>
+      </div>`
+            }
+
+            function generate() {
+                const type = byId('selType').value;
+                const input = byId('selInput').value;
+                const plat = byId('selPlatform').value;
+                const seed = byId('selSeed').value;
+                const style = byId('selStyle').value;
+                const hint = byId('txtHint').value.trim();
+                const len = parseInt(byId('rngLen').value, 10);
+                const date = byId('txtDate').value.trim();
+                const iter = byId('txtIter').value.trim() || 'a';
+                const pref = (byId('txtPrefix').value.trim() || 'SK').toUpperCase();
+
+                const out = [];
+                for (let k = 0; k < 4; k++) {
+                    const nm = genName(seed, style, len, hint);
+                    const slug = `${slugify(nm)}-${date}`;
+                    const code = makeCode(pref, type, input, plat, seed, date, String.fromCharCode(97 + k));
+                    out.push(resultCard(nm, slug, code));
+                }
+                byId('results').innerHTML = out.join('');
+                renderActiveTags();
+
+                // Attach copy buttons
+                byId('results').querySelectorAll('[data-copy]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        copy(btn.getAttribute('data-copy'));
+                        btn.textContent = 'Copied';
+                        setTimeout(() => btn.textContent = 'Copy', 900);
+                    })
+                });
+            }
+
+            // ========= BOOT =========
+            function boot() {
+                fillSelect(byId('selType'), CONFIG.types);
+                fillSelect(byId('selInput'), CONFIG.inputs);
+                fillSelect(byId('selPlatform'), CONFIG.platforms);
+                fillSelect(byId('selSeed'), CONFIG.seeds);
+                setDateField();
+                rngSync();
+                renderActiveTags();
+                generate();
+
+                byId('dateLock').addEventListener('change', setDateField);
+                byId('rngLen').addEventListener('input', rngSync);
+                ['selType', 'selInput', 'selPlatform', 'selSeed', 'selStyle'].forEach(id => {
+                    byId(id).addEventListener('change', generate);
+                });
+                ['txtHint', 'txtDate', 'txtIter', 'txtPrefix'].forEach(id => {
+                    byId(id).addEventListener('input', generate);
+                });
+                byId('btnGenerate').addEventListener('click', generate);
+                byId('btnReset').addEventListener('click', () => {
+                    byId('selType').value = 'INT';
+                    byId('selInput').value = 'CAM';
+                    byId('selPlatform').value = 'WEB';
+                    byId('selSeed').value = 'RIP';
+                    byId('selStyle').value = 'neutral';
+                    byId('txtHint').value = '';
+                    byId('rngLen').value = 6; rngSync();
+                    byId('txtIter').value = 'a';
+                    byId('txtPrefix').value = 'SK';
+                    byId('dateLock').checked = true; setDateField();
+                    generate();
+                });
+                byId('btnCopyAll').addEventListener('click', () => {
+                    const txt = Array.from(document.querySelectorAll('.result')).map(card => {
+                        const title = card.querySelector('.title').textContent.trim();
+                        const [slug, code] = Array.from(card.querySelectorAll('.kbd')).map(k => k.textContent.trim());
+                        return `${title}\n${slug}\n${code}`;
+                    }).join('\n\n');
+                    copy(txt);
+                });
+            }
+            document.addEventListener('DOMContentLoaded', boot);
+        </script>
+    </div>
+</body>
+
+</html>
