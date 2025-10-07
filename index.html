@@ -332,8 +332,7 @@
                 <div>
                     <h1>Sketch Name & Code Generator</h1>
                     <div class="sub">One-click working titles + consistent IDs for sketches (single-word, poetic,
-                        expandable).
-                    </div>
+                        expandable).</div>
                 </div>
             </div>
             <div class="switch" title="Live date">
@@ -447,7 +446,6 @@
                     WEB: "Web", P8: "Pico-8", RGH: "Retro Handheld", DESK: "Desktop", MOB: "Mobile"
                 },
                 seeds: {
-                    // High-level themes that also steer naming morphemes
                     RIP: "Water / Ripple", WAV: "Wave / Sea", TID: "Tide",
                     GLO: "Glow / Light", LUX: "Light / Lux", NEO: "Neon",
                     MOS: "Moss / Nature", FRN: "Fern / Forest", BIR: "Bird / Air",
@@ -456,42 +454,40 @@
                     RGB: "RGB / Screens", CMY: "Print Colors", AER: "Air / Whisper",
                     ECH: "Echo / Sound", TOP: "Topography / Contour"
                 },
-                // Thematic morphemes: gentle, suggestive, multi-lingual fragments
                 themeMorphemes: {
-                    RIP: ["ri", "riva", "rivu", "rill", "rip", "ria", "li", "lin", "lune", "na", "nai", "kai", "kaiu", "koi", "mizu", "sui", "onda", "und"],
-                    WAV: ["wa", "wav", "vai", "vae", "mar", "mare", "nami", "umi", "tyd", "tid", "tide", "brine", "bri", "swell", "ond", "onda"],
-                    TID: ["tid", "tide", "flot", "flux", "flow", "rio", "ebb", "evi", "aeo", "ae", "noe"],
-                    GLO: ["glo", "glow", "glae", "luma", "lumi", "lua", "lu", "lux", "halo", "hal", "io"],
-                    LUX: ["lux", "luz", "lumi", "ill", "illu", "lix", "lys", "luce", "luc"],
-                    NEO: ["neo", "neon", "nio", "nyo", "neo", "ne"],
-                    MOS: ["mos", "moss", "musa", "mori", "moro", "moro", "moko", "koke", "koro", "verd", "ver", "silv", "selv"],
-                    FRN: ["fern", "frn", "fir", "forn", "faun", "frond", "ver", "verde", "mori", "shin", "hay"],
-                    BIR: ["aer", "air", "eir", "ave", "avi", "ori", "oro", "tori", "kite", "sora", "alto", "alto", "avi"],
-                    CRT: ["crt", "scan", "phos", "phos", "vga", "vhs", "mono", "sync", "desync", "noiz", "nois", "glitch", "fuzz"],
-                    VHS: ["vhs", "tape", "mag", "oxide", "rew", "spool", "trak", "trak"],
-                    MOP: ["mop", "nac", "nacre", "irid", "op", "opal", "pearl", "perla", "shira", "shell", "kai"],
-                    ISO: ["iso", "axon", "axon", "grid", "iso", "tri", "tetra", "ortho", "para", "prism", "poly", "cont"],
-                    MON: ["mon", "mono", "uno", "sole", "solo", "haku", "shiro", "kuro", "noir"],
-                    DUO: ["duo", "bi", "dyo", "twi", "gem", "pair", "bin"],
+                    RIP: ["aqua", "unda", "rill", "rivu", "seiche", "brine", "onda", "nami", "umi", "tide"],
+                    WAV: ["swell", "mar", "mare", "tidal", "brine", "wave", "surf", "nami", "ond"],
+                    TID: ["tide", "ebb", "flow", "flux", "rio", "wadi", "wash"],
+                    GLO: ["glo", "glow", "lumen", "halo", "aur", "gleam", "flare"],
+                    LUX: ["lux", "lumen", "luz", "luce", "illum", "lys"],
+                    NEO: ["neo", "neon", "neoter", "novo"],
+                    MOS: ["moss", "myco", "silva", "virid", "grove", "verd", "fern"],
+                    FRN: ["fern", "frond", "silva", "verde", "mori"],
+                    BIR: ["aer", "avi", "alto", "sora", "ori", "kite"],
+                    CRT: ["crt", "scan", "raster", "phos", "sync", "noiz", "glitch"],
+                    VHS: ["vhs", "tape", "oxide", "rew", "spool", "track"],
+                    MOP: ["nacre", "opal", "irid", "pearl", "shell", "shira", "kai"],
+                    ISO: ["iso", "axon", "ortho", "prism", "poly", "grid", "contour"],
+                    MON: ["mono", "solo", "noir", "haku", "shiro", "kuro"],
+                    DUO: ["duo", "pair", "gem", "bidi", "twin"],
                     RGB: ["rgb", "scan", "pix", "dot", "phos", "raster", "triad"],
-                    CMY: ["cmy", "ink", "print", "cian", "mag", "yelo", "key"],
-                    AER: ["aer", "ae", "eir", "air", "sigh", "sus", "hush", "whis", "siro", "siroc"],
-                    ECH: ["eco", "echo", "eko", "ech", "sono", "sonus", "oto", "ne", "ring", "chime"],
-                    TOP: ["topo", "cont", "iso", "ridge", "val", "vale", "tor", "mass", "terra", "lin"],
+                    CMY: ["cmy", "ink", "print", "cyan", "mag", "key"],
+                    AER: ["aer", "eir", "air", "hush", "whis", "siroc"],
+                    ECH: ["echo", "sono", "sonus", "otel", "ring", "chime"],
+                    TOP: ["topo", "contour", "ridge", "val", "terra", "lin"],
                     DEFAULT: ["ka", "ki", "ko", "lu", "la", "li", "no", "na", "ne", "ri", "ra", "re", "so", "su", "si", "va", "ve", "vi", "ae", "eo", "io", "ar", "el", "ul", "on", "um"]
                 },
-                // Style steering (phonetics & letter mood)
                 styles: {
-                    soft: { onset: ["l", "m", "n", "r", "s", "v", "w", "y"], vowel: ["a", "e", "i", "o", "u", "ae", "ia", "io", "ou"], coda: ["a", "e", "i", "o", "u", "el", "en", "ir", "un", "al"], mix: 0.6 },
-                    sharp: { onset: ["k", "t", "x", "z", "v", "cr", "sk", "tr", "pr", "dr"], vowel: ["a", "i", "o", "y"], coda: ["k", "x", "q", "z", "ct", "sk", "th"], mix: 0.3 },
-                    bright: { onset: ["l", "gl", "cl", "br", "fl"], vowel: ["a", "e", "i", "o", "u", "aur", "io", "ea"], coda: ["o", "a", "or", "el", "is"], mix: 0.7 },
-                    dark: { onset: ["n", "r", "v", "m", "d", "g", "gr", "vr"], vowel: ["u", "o", "au", "ou"], coda: ["um", "or", "os", "oth", "ar", "urn"], mix: 0.4 },
-                    neutral: { onset: ["b", "c", "d", "f", "g", "h", "k", "l", "m", "n", "p", "r", "s", "t", "v"], vowel: ["a", "e", "i", "o", "u"], coda: ["a", "e", "i", "o", "u", "n", "l", "r", "s"], mix: 0.5 }
+                    soft: { onset: ["l", "m", "n", "r", "s", "v", "w", "y", "gl", "cl", "br", "fl"], vowel: ["a", "e", "i", "o", "u", "ae", "ia", "io", "ou"], coda: ["a", "e", "i", "o", "u", "el", "en", "ir", "un", "al"], mix: 0.95 },
+                    sharp: { onset: ["k", "t", "x", "z", "v", "cr", "sk", "tr", "pr", "dr"], vowel: ["a", "i", "o", "y"], coda: ["k", "x", "q", "z", "ct", "sk", "th"], mix: 0.85 },
+                    bright: { onset: ["l", "gl", "cl", "br", "fl"], vowel: ["a", "e", "i", "o", "u", "aur", "io", "ea"], coda: ["o", "a", "or", "el", "is"], mix: 0.9 },
+                    dark: { onset: ["n", "r", "v", "m", "d", "g", "gr", "vr"], vowel: ["u", "o", "au", "ou"], coda: ["um", "or", "os", "oth", "ar", "urn"], mix: 0.9 },
+                    neutral: { onset: ["b", "c", "d", "f", "g", "h", "k", "l", "m", "n", "p", "r", "s", "t", "v"], vowel: ["a", "e", "i", "o", "u"], coda: ["a", "e", "i", "o", "u", "n", "l", "r", "s"], mix: 0.9 }
                 }
             };
 
             // ========= UTIL =========
-            const byId = (id) => document.getElementById(id);
+            const byId = id => document.getElementById(id);
             const todayYYMMDD = () => {
                 const d = new Date();
                 const y = String(d.getFullYear()).slice(-2);
@@ -499,13 +495,35 @@
                 const da = String(d.getDate()).padStart(2, '0');
                 return `${y}${m}${da}`;
             };
-            const titleCase = s => s.replace(/(^|\b)([a-z])/g, (_, b, c) => b + c.toUpperCase());
             const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-
-            // Weighted pick
             const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 
-            // ========= NAME GEN =========
+            // ========= helpers without backref regex =========
+            function collapseRuns(str, vowels) {
+                const set = vowels ? 'aeiou' : 'bcdfghjklmnpqrstvwxyz';
+                let out = '';
+                for (let i = 0; i < str.length; i++) {
+                    const ch = str[i];
+                    const prev = out[out.length - 1];
+                    if (prev && ch.toLowerCase() === prev.toLowerCase() && set.includes(ch.toLowerCase())) continue;
+                    out += ch;
+                }
+                return out;
+            }
+            function fixQu(s) {
+                let out = '';
+                for (let i = 0; i < s.length; i++) {
+                    const ch = s[i];
+                    if (ch.toLowerCase() === 'q') {
+                        const nxt = s[i + 1] || '';
+                        if (nxt.toLowerCase() !== 'u') { out += ch + 'u'; continue; }
+                    }
+                    out += ch;
+                }
+                return out;
+            }
+
+            // ========= NAME GEN (template + filters + theme anchor) =========
             function genName(themeKey, styleKey, targetLen = 6, hint = "") {
                 const style = CONFIG.styles[styleKey] || CONFIG.styles.neutral;
                 const mor = (CONFIG.themeMorphemes[themeKey] || []).concat(CONFIG.themeMorphemes.DEFAULT);
@@ -518,17 +536,16 @@
                 const CODAS_SOFT = ["l", "n", "r", "m", "s", "el", "en", "or", "is", "on", "um", "a", "o", "e"];
                 const BAD = [/[^aeiou]{4,}/i, /[aeiou]{4,}/i, /q(?!u)/i, /^ng/i, /yy|jj/i];
 
-                function syl() { return pick(onset) + pick(vowel); }
                 function sweetOnset() { return Math.random() < 0.5 ? pick(ONSETS_SWEET) : pick(onset); }
                 function softCoda() { return Math.random() < 0.7 ? pick(CODAS_SOFT) : pick(coda); }
                 function acceptable(s) { return !BAD.some(rx => rx.test(s)); }
 
                 const TEMPLATES = [
-                    ["morph", "V"],       // morpheme + vowel
-                    ["morph", "VC"],      // morpheme + vowel + soft coda
-                    ["C", "V", "C", "V"],   // CVCV
-                    ["C", "VV", "C"],      // CVVC
-                    ["C", "V", "C", "C", "V"] // CVCCV (rare, but can sound strong)
+                    ["morph", "V"],
+                    ["morph", "VC"],
+                    ["C", "V", "C", "V"],
+                    ["C", "V", "V", "C"],
+                    ["C", "V", "C", "C", "V"]
                 ];
 
                 function buildBy(t) {
@@ -543,26 +560,26 @@
                     return out;
                 }
 
-                // bias to theme-first templates
-                const template = Math.random() < (style.mix ?? 0.9) ? pick(TEMPLATES.slice(0, 2)) : pick(TEMPLATES);
-
+                const template = Math.random() < (style.mix || 0.9) ? pick(TEMPLATES.slice(0, 2)) : pick(TEMPLATES);
                 let base = buildBy(template);
 
-                // cleanup
-                base = base.replace(/([aeiou])\1+/g, '$1').replace(/([^aeiou])\1+/g, '$1').replace(/q(?!u)/g, 'qu');
+                // cleanup without backref regex
+                base = collapseRuns(base, true);
+                base = collapseRuns(base, false);
+                base = fixQu(base);
 
                 // length adjust
                 if (base.length > wantLen) base = base.slice(0, wantLen);
                 if (base.length < wantLen && Math.random() < 0.6) base += pick(vowel);
                 if (!acceptable(base)) {
-                    // single retry
                     base = buildBy(template);
-                    base = base.replace(/([aeiou])\1+/g, '$1').replace(/([^aeiou])\1+/g, '$1').replace(/q(?!u)/g, 'qu');
+                    base = collapseRuns(base, true);
+                    base = collapseRuns(base, false);
+                    base = fixQu(base);
                 }
 
                 return base.charAt(0).toUpperCase() + base.slice(1).toLowerCase();
             }
-
 
             // ========= CODE GEN =========
             function makeCode(prefix, type, input, plat, seed, date, iter) {
@@ -577,41 +594,52 @@
 
             // ========= UI INIT =========
             function fillSelect(sel, map) {
-                sel.innerHTML = Object.entries(map).map(([k, v]) => `<option value="${k}">${v} <span class=cap>(${k})</span></option>`).join('');
+                // Build options safely (no HTML in <option>) for cross-browser rendering
+                sel.innerHTML = '';
+                for (const [k, v] of Object.entries(map)) {
+                    const o = document.createElement('option');
+                    o.value = k;
+                    o.textContent = `${v} (${k})`;
+                    sel.appendChild(o);
+                }
             }
-
             function tag(label, val) { return `<span class="pill">${label}: <b>${val}</b></span>` }
-
             function renderActiveTags() {
                 const t = byId('selType').value,
                     i = byId('selInput').value,
                     p = byId('selPlatform').value,
                     s = byId('selSeed').value;
-                byId('activeTags').innerHTML = [
-                    tag('TYPE', t), tag('INPUT', i), tag('PLAT', p), tag('SEED', s)
-                ].join(' ');
+                byId('activeTags').innerHTML = [tag('TYPE', t), tag('INPUT', i), tag('PLAT', p), tag('SEED', s)].join(' ');
             }
-
             function setDateField() {
                 const lock = byId('dateLock').checked;
                 if (lock) { byId('txtDate').value = todayYYMMDD(); byId('txtDate').readOnly = true; }
                 else { byId('txtDate').readOnly = false; }
             }
-
             function rngSync() { byId('lenVal').textContent = `(${byId('rngLen').value})`; }
-
             function copy(text) { navigator.clipboard.writeText(text).catch(() => { }); }
 
-            function resultCard(name, slug, code) {
+            function icon(name) {
+                if (name === 'copy') return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>`;
+                if (name === 'check') return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>`;
+                return '';
+            }
+
+            function resultRow(name, slug, code) {
                 return `
-      <div class="result">
-        <div class="title">${name}</div>
-        <div class="codes">
-          <div class="code-line"><div class="kbd" title="Slug">${slug}</div><button class="btn ghost" data-copy="${slug}">Copy</button></div>
-          <div class="code-line"><div class="kbd" title="Code ID">${code}</div><button class="btn ghost" data-copy="${code}">Copy</button></div>
-        </div>
-        <div class="section muted">Use the single-word title as a working name; refine later without breaking IDs.</div>
-      </div>`
+<div class="result">
+ <div class="result-grid">
+   <div class="title">${name}</div>
+   <div class="codes">
+     <div class="kbd" title="Slug">${slug}</div>
+     <button class="copy-btn" aria-label="Copy slug" data-copy="${slug}">${icon('copy')}</button>
+   </div>
+   <div class="codes">
+     <div class="kbd" title="Code ID">${code}</div>
+     <button class="copy-btn" aria-label="Copy code" data-copy="${code}">${icon('copy')}</button>
+   </div>
+ </div>
+</div>`;
             }
 
             function generate() {
@@ -631,22 +659,20 @@
                     const nm = genName(seed, style, len, hint);
                     const slug = `${slugify(nm)}-${date}`;
                     const code = makeCode(pref, type, input, plat, seed, date, String.fromCharCode(97 + k));
-                    out.push(resultCard(nm, slug, code));
+                    out.push(resultRow(nm, slug, code));
                 }
                 byId('results').innerHTML = out.join('');
                 renderActiveTags();
 
-                // Attach copy buttons
                 byId('results').querySelectorAll('[data-copy]').forEach(btn => {
                     btn.addEventListener('click', () => {
                         copy(btn.getAttribute('data-copy'));
-                        btn.textContent = 'Copied';
-                        setTimeout(() => btn.textContent = 'Copy', 900);
+                        const prev = btn.innerHTML; btn.innerHTML = icon('check');
+                        setTimeout(() => btn.innerHTML = prev, 900);
                     })
                 });
             }
 
-            // ========= BOOT =========
             function boot() {
                 fillSelect(byId('selType'), CONFIG.types);
                 fillSelect(byId('selInput'), CONFIG.inputs);
@@ -681,9 +707,9 @@
                 });
                 byId('btnCopyAll').addEventListener('click', () => {
                     const txt = Array.from(document.querySelectorAll('.result')).map(card => {
-                        const title = card.querySelector('.title').textContent.trim();
-                        const [slug, code] = Array.from(card.querySelectorAll('.kbd')).map(k => k.textContent.trim());
-                        return `${title}\n${slug}\n${code}`;
+                        const name = card.querySelector('.title').textContent.trim();
+                        const vals = Array.from(card.querySelectorAll('.kbd')).map(k => k.textContent.trim());
+                        return `${name}\n${vals[0]}\n${vals[1]}`;
                     }).join('\n\n');
                     copy(txt);
                 });
