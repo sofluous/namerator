@@ -199,34 +199,75 @@
         }
 
         .results {
-            display: grid;
+            display: block;
+            margin: 0;
+            padding: 0;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px
         }
 
+        .result-grid {
+            display: grid;
+            /* name ~ up to ~10ch; slug ~≥17ch; give code most space */
+            grid-template-columns:
+                minmax(8ch, 12ch)
+                /* Name (shortest) */
+                minmax(20ch, 1.2fr)
+                /* Slug (mid)     */
+                minmax(28ch, 2fr);
+            /* Code ID (long) */
+            gap: 12px;
+            align-items: center;
+        }
+
         @media (max-width:820px) {
-            .results {
-                grid-template-columns: 1fr
+            .result-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
             }
         }
 
+        .result-grid>.codes .kbd {
+            flex: 1 1 0;
+            min-width: 0
+        }
+
+        /* text grows, can shrink */
+        .result-grid>.codes .copy-btn {
+            flex: 0 0 auto
+        }
+
+
         .result {
-            border: 1px solid #1b2331;
-            border-radius: 14px;
-            padding: 14px;
-            background: linear-gradient(180deg, #0f141e, #0d121b)
+            border: 0;
+            border-bottom: 1px solid #1b2331;
+            border-radius: 0;
+            padding: 8px 0;
+            background: transparent;
+        }
+
+        .result-grid>.codes:first-of-type .kbd {
+            max-width: none;
+        }
+
+        .result-grid>.codes:last-of-type .kbd {
+            max-width: none;
         }
 
         .title {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: .3px;
-            margin: 0 0 6px
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .codes {
-            display: grid;
-            gap: 8px
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            min-width: 0
         }
 
         .code-line {
@@ -240,11 +281,36 @@
             font: 13px var(--mono);
             background: #0a0f17;
             border: 1px solid #1b2331;
-            border-radius: 8px;
-            padding: 8px 10px;
-            overflow: auto;
-            white-space: nowrap
+            border-radius: 6px;
+            padding: 6px 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
+
+        .copy-btn {
+            display: inline-grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid #2a3650;
+            background: #131b28;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .copy-btn:hover {
+            background: #1a2232
+        }
+
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #cfe7ff
+        }
+
 
         .pill {
             font: 11px var(--mono);
